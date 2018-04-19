@@ -18,6 +18,6 @@ before_script:
   - cd BUILD
   
 script:
-  - ../Trilinos/./do-configure -DTrilinos_ENABLE_Teuchos=ON -DTrilinos_ENABLE_MueLu=ON
-  - make NP=2
+  - ../Trilinos/./do-configure -DTrilinos_ENABLE_Epetra=ON
+  - make -j 2
   - ctest -j 2
