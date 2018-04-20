@@ -18,6 +18,4 @@ before_script:
   - cd BUILD
   
 script:
-  - ../Trilinos/./do-configure -DTrilinos_ENABLE_Epetra=ON
-  - make -j 2
-  - ctest -j 2
+  - ../Trilinos/./do-configure -DTrilinos_ENABLE_Epetra=ON && make -j 2 && ctest -j 2
