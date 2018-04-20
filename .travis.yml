@@ -5,9 +5,59 @@ env:
     # Ubuntu version
     - LINUX_DIST=trusty
   matrix:
-    - PACKAGE=Epetra
-    - PACKAGE=Sacado
+    - PACKAGE=Gtest
     - PACKAGE=ThreadPool
+    - PACKAGE=Kokkos
+    - PACKAGE=Teuchos
+    - PACKAGE=KokkosKernels
+    - PACKAGE=RTOp
+    - PACKAGE=Sacado
+    - PACKAGE=MiniTensor
+    - PACKAGE=Epetra
+    - PACKAGE=Zoltan
+    - PACKAGE=Shards
+    - PACKAGE=GlobiPack
+    - PACKAGE=Triutils
+    - PACKAGE=Tpetra
+    - PACKAGE=TrilinosSS
+    - PACKAGE=EpetraExt
+    - PACKAGE=Domi
+    - PACKAGE=Thyra
+    - PACKAGE=Xpetra
+    - PACKAGE=OptiPack
+    - PACKAGE=Isorropia
+    - PACKAGE=AztecOO
+    - PACKAGE=Galeri
+    - PACKAGE=Amesos
+    - PACKAGE=Pamgen
+    - PACKAGE=Zoltan2
+    - PACKAGE=Ifpack
+    - PACKAGE=ML
+    - PACKAGE=Belos
+    - PACKAGE=ShyLU_Node
+    - PACKAGE=Amesos2
+    - PACKAGE=SEACAS
+    - PACKAGE=Anasazi
+    - PACKAGE=Ifpack2
+    - PACKAGE=Stratimikos
+    - PACKAGE=FEI
+    - PACKAGE=Teko
+    - PACKAGE=Intrepid
+    - PACKAGE=Intrepid2
+    - PACKAGE=STK
+    - PACKAGE=Phalanx
+    - PACKAGE=NOX
+    - PACKAGE=MueLu
+    - PACKAGE=ShyLU_DD
+    - PACKAGE=ShyLU
+    - PACKAGE=Rythmos
+    - PACKAGE=Tempus
+    - PACKAGE=Stokhos
+    - PACKAGE=ROL
+    - PACKAGE=Piro
+    - PACKAGE=Panzer
+    - PACKAGE=TrilinosCouplings
+    - PACKAGE=Pike
 
 git:
   depth: 3
