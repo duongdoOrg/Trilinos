@@ -4,6 +4,10 @@ env:
   global:
     # Ubuntu version
     - LINUX_DIST=trusty
+  matrix:
+    - PACKAGE=Epetra
+    - PACKAGE=Sacado
+    - PACKAGE=ThreadPool
 
 git:
   depth: 3
@@ -18,4 +22,4 @@ before_script:
   - cd BUILD
   
 script:
-  - ../Trilinos/./do-configure -DTrilinos_ENABLE_Epetra=ON && make -j 2 && ctest -j 2
+  - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON && make -j 2 && ctest -j 2
