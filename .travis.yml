@@ -63,7 +63,7 @@ git:
   depth: 3
 
 before_install:
-  - sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich ninja-build
+  - sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich
  
 before_script:
   - git clone https://github.com/duongdoOrg/Trilinos Trilinos
@@ -72,4 +72,4 @@ before_script:
   - cd BUILD
   
 script:
-  - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON && make NP=2 && ctest -j 2
+  - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON && make -j 2

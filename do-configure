@@ -1,9 +1,9 @@
 EXTRA_ARGS=$@
 
 cmake \
-  -GNinja \
   -D CMAKE_BUILD_TYPE=DEBUG \
   -DTPL_ENABLE_MPI=ON \
+  -DTrilinos_ENABLE_TESTS=OFF \
   -D Trilinos_ENABLE_EXPLICIT_INSTANTIATION=ON \
   $EXTRA_ARGS \
   ../Trilinos
