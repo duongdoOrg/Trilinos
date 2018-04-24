@@ -41,18 +41,12 @@ env:
     - PACKAGE=Ifpack2
     - PACKAGE=Stratimikos
     - PACKAGE=FEI
-    - PACKAGE=Teko
     - PACKAGE=Intrepid
     - PACKAGE=Intrepid2
     - PACKAGE=STK
     - PACKAGE=Phalanx
-    - PACKAGE=NOX
-    - PACKAGE=MueLu
     - PACKAGE=ShyLU_DD
     - PACKAGE=ShyLU
-    - PACKAGE=Rythmos
-    - PACKAGE=Tempus
-    - PACKAGE=Stokhos
     - PACKAGE=ROL
     - PACKAGE=Piro
     - PACKAGE=Panzer
@@ -63,7 +57,7 @@ git:
   depth: 3
 
 before_install:
-  - sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich
+  - sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich libboost-dev netcdf
  
 before_script:
   - git clone https://github.com/duongdoOrg/Trilinos Trilinos
