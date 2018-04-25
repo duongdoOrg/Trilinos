@@ -57,7 +57,7 @@ git:
   depth: 3
 
 before_install:
-  - sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich libboost-dev netcdf
+  - sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich libboost-dev libnetcdf-dev
  
 before_script:
   - git clone https://github.com/duongdoOrg/Trilinos Trilinos
