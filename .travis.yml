@@ -72,4 +72,4 @@ before_script:
   - cd BUILD
   
 script:
-  - ../Trilinos/./do-configure -DTrilinos_ENABLE_Panzer=ON && make -j 2
+  - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON && make -j 2
