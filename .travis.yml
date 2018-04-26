@@ -5,6 +5,7 @@ env:
     # Ubuntu version
     - LINUX_DIST=trusty
   matrix:
+    - PACKAGE=STK
     - PACKAGE=Gtest
     - PACKAGE=ThreadPool
     - PACKAGE=Kokkos
@@ -44,7 +45,6 @@ env:
  #  - PACKAGE=Teko    Timeout
     - PACKAGE=Intrepid
     - PACKAGE=Intrepid2
-    - PACKAGE=STK
     - PACKAGE=Phalanx
 #   - PACKAGE=NOX     Timeout
 #   - PACKAGE=MueLu   Timeout
