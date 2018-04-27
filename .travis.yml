@@ -5,65 +5,66 @@ env:
     # Ubuntu version
     - LINUX_DIST=trusty
   matrix:
-    - PACKAGE=STK
-    - PACKAGE=Gtest
-    - PACKAGE=ThreadPool
-    - PACKAGE=Kokkos
-    - PACKAGE=Teuchos
-    - PACKAGE=KokkosKernels
-    - PACKAGE=RTOp
-    - PACKAGE=Sacado
-    - PACKAGE=MiniTensor
-    - PACKAGE=Epetra
-    - PACKAGE=Zoltan
-    - PACKAGE=Shards
-    - PACKAGE=GlobiPack
-    - PACKAGE=Triutils
-    - PACKAGE=Tpetra
-    - PACKAGE=TrilinosSS
-    - PACKAGE=EpetraExt
-    - PACKAGE=Domi
-    - PACKAGE=Thyra
-    - PACKAGE=Xpetra
-    - PACKAGE=OptiPack
+    - PACKAGE=STK MODE=full
+    - PACKAGE=Gtest MODE=full
+    - PACKAGE=ThreadPool MODE=full
+    - PACKAGE=Teuchos MODE=full
+    - PACKAGE=KokkosKernels MODE=full
+    - PACKAGE=RTOp MODE=full
+    - PACKAGE=Sacado MODE=full
+    - PACKAGE=MiniTensor MODE=full
+    - PACKAGE=Epetra MODE=full
+    - PACKAGE=Shards MODE=full
+    - PACKAGE=GlobiPack MODE=full
+    - PACKAGE=Triutils MODE=full
+    - PACKAGE=TrilinosSS MODE=full
+    - PACKAGE=EpetraExt MODE=full
+    - PACKAGE=Domi MODE=full
+    - PACKAGE=Thyra MODE=full
+    - PACKAGE=OptiPack MODE=full
+    - PACKAGE=AztecOO MODE=full
+    - PACKAGE=Galeri MODE=full
+    - PACKAGE=Amesos MODE=full
+    - PACKAGE=Pamgen MODE=full
+    - PACKAGE=ML MODE=full
+    - PACKAGE=Belos MODE=full
+    - PACKAGE=ShyLU_Node MODE=full
+    - PACKAGE=Amesos2 MODE=full
+    - PACKAGE=SEACAS MODE=full
+    - PACKAGE=Anasazi MODE=full
+    - PACKAGE=Ifpack2 MODE=full
+    - PACKAGE=Stratimikos MODE=full
+    - PACKAGE=FEI MODE=full
+    - PACKAGE=Intrepid2 MODE=full
+    - PACKAGE=Phalanx MODE=full
+    - PACKAGE=ShyLU_DD MODE=full
+    - PACKAGE=ShyLU MODE=full
+    - PACKAGE=Panzer MODE=full
+    - PACKAGE=TrilinosCouplings MODE=full
+    - PACKAGE=Pike MODE=full
+    - PACKAGE=Kokkos MODE=notest
+    - PACKAGE=Intrepid MODE=notest
+    - PACKAGE=Zoltan2 MODE=notest
+    - PACKAGE=Ifpack MODE=notest
+    - PACKAGE=Xpetra MODE=notest
+    - PACKAGE=Tpetra MODE=notest
+    - PACKAGE=Zoltan MODE=notest
 #   - PACKAGE=Isorropia     make: *** [all] Error 2
-    - PACKAGE=AztecOO
-    - PACKAGE=Galeri
-    - PACKAGE=Amesos
-    - PACKAGE=Pamgen
-    - PACKAGE=Zoltan2
-    - PACKAGE=Ifpack
-    - PACKAGE=ML
-    - PACKAGE=Belos
-    - PACKAGE=ShyLU_Node
-    - PACKAGE=Amesos2
-    - PACKAGE=SEACAS
-    - PACKAGE=Anasazi
-    - PACKAGE=Ifpack2
-    - PACKAGE=Stratimikos
-    - PACKAGE=FEI
- #  - PACKAGE=Teko    Timeout
-    - PACKAGE=Intrepid
-    - PACKAGE=Intrepid2
-    - PACKAGE=Phalanx
-#   - PACKAGE=NOX     Timeout
-#   - PACKAGE=MueLu   Timeout
-    - PACKAGE=ShyLU_DD
-    - PACKAGE=ShyLU
 #   - PACKAGE=Rythmos   Timeout
 #   - PACKAGE=Tempus    Timeout
 #   - PACKAGE=Stokhos   Timeout
 #   - PACKAGE=ROL       Timeout
 #   - PACKAGE=Piro      Timeout
-    - PACKAGE=Panzer
-    - PACKAGE=TrilinosCouplings
-    - PACKAGE=Pike
+#   - PACKAGE=NOX     Timeout
+#   - PACKAGE=MueLu   Timeout
+#   - PACKAGE=Teko    Timeout
+
 
 git:
   depth: 3
 
 before_install:
-  - sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich libboost-dev libnetcdf-dev libmatio-dev
+  - sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich libboost-dev libnetcdf-dev libmatio-dev libboost-all-dev
  
 before_script:
   - git clone https://github.com/duongdoOrg/Trilinos Trilinos
@@ -72,4 +73,7 @@ before_script:
   - cd BUILD
   
 script:
-  - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON && make -j 2
+  - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON
+  - make -j 2
+  - if [ $MODE=full ]; then ctest -j 2; fi
+
