@@ -79,5 +79,5 @@ before_script:
 script:
   - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON
   - make -j 2
-  - if [[ $MODE=full ]]; then ctest -j 2; fi
+  - if [[ $MODE=="full" ]]; then ctest -j 2; fi
 
