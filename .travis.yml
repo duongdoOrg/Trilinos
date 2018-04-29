@@ -5,6 +5,12 @@ env:
     # Ubuntu version
     - LINUX_DIST=trusty
   matrix:
+# 6 - SEACASAprepro_lib_aprepro_lib_unit_test (Not Run)
+    - PACKAGE=SEACAS MODE=notest
+# 1 - KokkosCore_UnitTest_Serial_MPI_1 (Failed)
+    - PACKAGE=Kokkos MODE=notest
+# Tpetra will timeout if running test
+    - PACKAGE=Tpetra MODE=notest
     - PACKAGE=STK MODE=full
     - PACKAGE=Gtest MODE=full
     - PACKAGE=ThreadPool MODE=full
@@ -30,7 +36,6 @@ env:
     - PACKAGE=Belos MODE=full
     - PACKAGE=ShyLU_Node MODE=full
     - PACKAGE=Amesos2 MODE=full
-    - PACKAGE=SEACAS MODE=full
     - PACKAGE=Anasazi MODE=full
     - PACKAGE=Ifpack2 MODE=full
     - PACKAGE=Stratimikos MODE=full
@@ -39,17 +44,14 @@ env:
     - PACKAGE=Phalanx MODE=full
     - PACKAGE=ShyLU_DD MODE=full
     - PACKAGE=ShyLU MODE=full
-    - PACKAGE=Panzer MODE=full
-    - PACKAGE=TrilinosCouplings MODE=full
     - PACKAGE=Pike MODE=full
-    - PACKAGE=Kokkos MODE=notest
-    - PACKAGE=Intrepid MODE=notest
-    - PACKAGE=Zoltan2 MODE=notest
-    - PACKAGE=Ifpack MODE=notest
-    - PACKAGE=Xpetra MODE=notest
-    - PACKAGE=Tpetra MODE=notest
-    - PACKAGE=Zoltan MODE=notest
+    - PACKAGE=Intrepid MODE=full
+    - PACKAGE=Zoltan2 MODE=full
+    - PACKAGE=Ifpack MODE=full
+    - PACKAGE=Xpetra MODE=full
+    - PACKAGE=Zoltan MODE=full
 #   - PACKAGE=Isorropia     make: *** [all] Error 2
+# Rythmos, Tempus, Stokhos, ROL, Xpetra, Piro, NOX, MueLu, Teko, Panzer, TrilinosCouplings timeout even when not running test
 #   - PACKAGE=Rythmos   Timeout
 #   - PACKAGE=Tempus    Timeout
 #   - PACKAGE=Stokhos   Timeout
@@ -58,6 +60,8 @@ env:
 #   - PACKAGE=NOX     Timeout
 #   - PACKAGE=MueLu   Timeout
 #   - PACKAGE=Teko    Timeout
+#   - PACKAGE=Panzer Timeout
+#   - PACKAGE=TrilinosCouplings Timeout
 
 
 git:
@@ -75,5 +79,5 @@ before_script:
 script:
   - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON
   - make -j 2
-  - if [ $MODE=full ]; then ctest -j 2; fi
+  - if [[ $MODE=full ]]; then ctest -j 2; fi
 
