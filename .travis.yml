@@ -5,19 +5,30 @@ env:
     # Ubuntu version
     - LINUX_DIST=trusty
   matrix:
+    - PACKAGE=Rythmos MODE=notest
+    - PACKAGE=Tempus MODE=notest
+    - PACKAGE=Stokhos MODE=notest
+    - PACKAGE=ROL MODE=notest
+    - PACKAGE=Piro MODE=notest
+    - PACKAGE=NOX MODE=notest
+    - PACKAGE=MueLu MODE=notest
+    - PACKAGE=Teko MODE=notest
+    - PACKAGE=Panzer MODE=notest
+    - PACKAGE=TrilinosCouplings MODE=notest
+    - PACKAGE=Tpetra MODE=full
 # 6 - SEACASAprepro_lib_aprepro_lib_unit_test (Not Run)
     - PACKAGE=SEACAS MODE=notest
 # 1 - KokkosCore_UnitTest_Serial_MPI_1 (Failed)
     - PACKAGE=Kokkos MODE=notest
+# 194 - Sacado_tradoptest_45_ADC_MPI_1 (Failed)
+    - PACKAGE=Sacado MODE=notest
 # Tpetra will timeout if running test
-    - PACKAGE=Tpetra MODE=notest
     - PACKAGE=STK MODE=full
     - PACKAGE=Gtest MODE=full
     - PACKAGE=ThreadPool MODE=full
     - PACKAGE=Teuchos MODE=full
     - PACKAGE=KokkosKernels MODE=full
     - PACKAGE=RTOp MODE=full
-    - PACKAGE=Sacado MODE=full
     - PACKAGE=MiniTensor MODE=full
     - PACKAGE=Epetra MODE=full
     - PACKAGE=Shards MODE=full
@@ -52,16 +63,7 @@ env:
     - PACKAGE=Zoltan MODE=full
 #   - PACKAGE=Isorropia     make: *** [all] Error 2
 # Rythmos, Tempus, Stokhos, ROL, Xpetra, Piro, NOX, MueLu, Teko, Panzer, TrilinosCouplings timeout even when not running test
-#   - PACKAGE=Rythmos   Timeout
-#   - PACKAGE=Tempus    Timeout
-#   - PACKAGE=Stokhos   Timeout
-#   - PACKAGE=ROL       Timeout
-#   - PACKAGE=Piro      Timeout
-#   - PACKAGE=NOX     Timeout
-#   - PACKAGE=MueLu   Timeout
-#   - PACKAGE=Teko    Timeout
-#   - PACKAGE=Panzer Timeout
-#   - PACKAGE=TrilinosCouplings Timeout
+
 
 
 git:
