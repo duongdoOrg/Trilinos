@@ -1,69 +1,70 @@
 language: cpp
 
+os:
+  - linux
+  - osx
+
 env:
   global:
     # Ubuntu version
     - LINUX_DIST=trusty
   matrix:
-    - PACKAGE=Rythmos MODE=notest
-    - PACKAGE=Tempus MODE=notest
-    - PACKAGE=Stokhos MODE=notest
-    - PACKAGE=ROL MODE=notest
-    - PACKAGE=Piro MODE=notest
-    - PACKAGE=NOX MODE=notest
-    - PACKAGE=MueLu MODE=notest
-    - PACKAGE=Teko MODE=notest
-    - PACKAGE=Panzer MODE=notest
-    - PACKAGE=TrilinosCouplings MODE=notest
-    - PACKAGE=Tpetra MODE=full
+    - PACKAGE=Tempus MODE=notest MPI=ON
+    - PACKAGE=Stokhos MODE=notest MPI=ON
+    - PACKAGE=ROL MODE=notest MPI=ON
+    - PACKAGE=Piro MODE=notest MPI=ON
+    - PACKAGE=NOX MODE=notest MPI=ON
+    - PACKAGE=MueLu MODE=notest MPI=ON
+    - PACKAGE=Panzer MODE=notest MPI=ON
+    - PACKAGE=TrilinosCouplings MODE=notest MPI=ON
+    - PACKAGE=Rythmos MODE=notest MPI=ON
+    - PACKAGE=Teko MODE=notest MPI=ON
+    - PACKAGE=Tpetra MODE=full MPI=OFF
+    - PACKAGE=STK MODE=full MPI=ON
+    - PACKAGE=Gtest MODE=full MPI=ON
+    - PACKAGE=ThreadPool MODE=full MPI=ON
+    - PACKAGE=Teuchos MODE=full MPI=ON
+    - PACKAGE=KokkosKernels MODE=full MPI=ON
+    - PACKAGE=RTOp MODE=full MPI=ON
+    - PACKAGE=MiniTensor MODE=full MPI=ON
+    - PACKAGE=Epetra MODE=full MPI=ON
+    - PACKAGE=Shards MODE=full MPI=ON
+    - PACKAGE=GlobiPack MODE=full MPI=ON
+    - PACKAGE=Triutils MODE=full MPI=ON
+    - PACKAGE=TrilinosSS MODE=full MPI=ON
+    - PACKAGE=EpetraExt MODE=full MPI=ON
+    - PACKAGE=Domi MODE=full MPI=ON
+    - PACKAGE=Thyra MODE=full MPI=ON
+    - PACKAGE=OptiPack MODE=full MPI=ON
+    - PACKAGE=AztecOO MODE=full MPI=ON
+    - PACKAGE=Galeri MODE=full MPI=ON
+    - PACKAGE=Amesos MODE=full MPI=ON
+    - PACKAGE=Pamgen MODE=full MPI=ON
+    - PACKAGE=ML MODE=full MPI=ON
+    - PACKAGE=Belos MODE=full MPI=ON
+    - PACKAGE=ShyLU_Node MODE=full MPI=ON
+    - PACKAGE=Amesos2 MODE=full MPI=ON
+    - PACKAGE=Anasazi MODE=full MPI=ON
+    - PACKAGE=Ifpack2 MODE=full MPI=ON
+    - PACKAGE=Stratimikos MODE=full MPI=ON
+    - PACKAGE=FEI MODE=full MPI=ON
+    - PACKAGE=Intrepid2 MODE=full MPI=ON
+    - PACKAGE=Phalanx MODE=full MPI=ON
+    - PACKAGE=ShyLU_DD MODE=full MPI=ON
+    - PACKAGE=ShyLU MODE=full MPI=ON
+    - PACKAGE=Pike MODE=full MPI=ON
+    - PACKAGE=Intrepid MODE=full MPI=ON
+    - PACKAGE=Zoltan2 MODE=full MPI=ON
+    - PACKAGE=Ifpack MODE=full MPI=ON
+    - PACKAGE=Xpetra MODE=full MPI=ON
+    - PACKAGE=Zoltan MODE=full MPI=ON
 # 6 - SEACASAprepro_lib_aprepro_lib_unit_test (Not Run)
-    - PACKAGE=SEACAS MODE=notest
+    - PACKAGE=SEACAS MODE=notest MPI=ON
 # 1 - KokkosCore_UnitTest_Serial_MPI_1 (Failed)
-    - PACKAGE=Kokkos MODE=notest
+    - PACKAGE=Kokkos MODE=notest MPI=ON
 # 194 - Sacado_tradoptest_45_ADC_MPI_1 (Failed)
-    - PACKAGE=Sacado MODE=notest
-# Tpetra will timeout if running test
-    - PACKAGE=STK MODE=full
-    - PACKAGE=Gtest MODE=full
-    - PACKAGE=ThreadPool MODE=full
-    - PACKAGE=Teuchos MODE=full
-    - PACKAGE=KokkosKernels MODE=full
-    - PACKAGE=RTOp MODE=full
-    - PACKAGE=MiniTensor MODE=full
-    - PACKAGE=Epetra MODE=full
-    - PACKAGE=Shards MODE=full
-    - PACKAGE=GlobiPack MODE=full
-    - PACKAGE=Triutils MODE=full
-    - PACKAGE=TrilinosSS MODE=full
-    - PACKAGE=EpetraExt MODE=full
-    - PACKAGE=Domi MODE=full
-    - PACKAGE=Thyra MODE=full
-    - PACKAGE=OptiPack MODE=full
-    - PACKAGE=AztecOO MODE=full
-    - PACKAGE=Galeri MODE=full
-    - PACKAGE=Amesos MODE=full
-    - PACKAGE=Pamgen MODE=full
-    - PACKAGE=ML MODE=full
-    - PACKAGE=Belos MODE=full
-    - PACKAGE=ShyLU_Node MODE=full
-    - PACKAGE=Amesos2 MODE=full
-    - PACKAGE=Anasazi MODE=full
-    - PACKAGE=Ifpack2 MODE=full
-    - PACKAGE=Stratimikos MODE=full
-    - PACKAGE=FEI MODE=full
-    - PACKAGE=Intrepid2 MODE=full
-    - PACKAGE=Phalanx MODE=full
-    - PACKAGE=ShyLU_DD MODE=full
-    - PACKAGE=ShyLU MODE=full
-    - PACKAGE=Pike MODE=full
-    - PACKAGE=Intrepid MODE=full
-    - PACKAGE=Zoltan2 MODE=full
-    - PACKAGE=Ifpack MODE=full
-    - PACKAGE=Xpetra MODE=full
-    - PACKAGE=Zoltan MODE=full
+    - PACKAGE=Sacado MODE=notest MPI=ON
 #   - PACKAGE=Isorropia     make: *** [all] Error 2
-# Rythmos, Tempus, Stokhos, ROL, Xpetra, Piro, NOX, MueLu, Teko, Panzer, TrilinosCouplings timeout even when not running test
-
 
 
 git:
@@ -79,7 +80,7 @@ before_script:
   - cd BUILD
   
 script:
-  - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON
+  - ../Trilinos/./do-configure -DTrilinos_ENABLE_$PACKAGE=ON -DTPL_ENABLE_MPI=$MPI
   - make -j 2
   - if [[ "$MODE" = "full" ]]; then ctest -j 2; fi
 
