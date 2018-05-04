@@ -1,7 +1,6 @@
 language: cpp
 
 os:
-  - linux
   - osx
 
 env:
@@ -9,18 +8,18 @@ env:
     # Ubuntu version
     - LINUX_DIST=trusty
   matrix:
-    - PACKAGE=Tempus MODE=notest MPI=ON
-    - PACKAGE=Stokhos MODE=notest MPI=ON
-    - PACKAGE=ROL MODE=notest MPI=ON
-    - PACKAGE=Piro MODE=notest MPI=ON
-    - PACKAGE=NOX MODE=notest MPI=ON
-    - PACKAGE=MueLu MODE=notest MPI=ON
-    - PACKAGE=Panzer MODE=notest MPI=ON
-    - PACKAGE=TrilinosCouplings MODE=notest MPI=ON
-    - PACKAGE=Rythmos MODE=notest MPI=ON
-    - PACKAGE=Teko MODE=notest MPI=ON
-    - PACKAGE=Tpetra MODE=full MPI=OFF
-    - PACKAGE=STK MODE=full MPI=ON
+#    - PACKAGE=Tempus MODE=notest MPI=ON
+#    - PACKAGE=Stokhos MODE=notest MPI=ON
+#    - PACKAGE=ROL MODE=notest MPI=ON
+#    - PACKAGE=Piro MODE=notest MPI=ON
+#    - PACKAGE=NOX MODE=notest MPI=ON
+#    - PACKAGE=MueLu MODE=notest MPI=ON
+#    - PACKAGE=Panzer MODE=notest MPI=ON
+#    - PACKAGE=TrilinosCouplings MODE=notest MPI=ON
+#    - PACKAGE=Rythmos MODE=notest MPI=ON
+#    - PACKAGE=Teko MODE=notest MPI=ON
+#    - PACKAGE=Tpetra MODE=full MPI=OFF
+#    - PACKAGE=STK MODE=full MPI=ON
     - PACKAGE=Gtest MODE=full MPI=ON
     - PACKAGE=ThreadPool MODE=full MPI=ON
     - PACKAGE=Teuchos MODE=full MPI=ON
