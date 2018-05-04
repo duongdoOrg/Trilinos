@@ -1,12 +1,11 @@
 language: cpp
 
-os:
-  - osx
+os: osx
 
 env:
-  global:
+#  global:
     # Ubuntu version
-    - LINUX_DIST=trusty
+#    - LINUX_DIST=trusty
   matrix:
 #    - PACKAGE=Tempus MODE=notest MPI=ON
 #    - PACKAGE=Stokhos MODE=notest MPI=ON
