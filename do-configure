@@ -5,5 +5,6 @@ cmake \
   -DTrilinos_ENABLE_TESTS=OFF \
   -DTPL_ENABLE_BoostLib=OFF \
   -DTrilinos_ENABLE_EXPLICIT_INSTANTIATION=ON \
+  -DBUILD_SHARED_LIBS=ON \
   $EXTRA_ARGS \
   ../Trilinos
