@@ -1,11 +1,13 @@
 language: cpp
 
-os: osx
+os: 
+    - osx
+    - linux
 
 env:
-#  global:
+  global:
     # Ubuntu version
-#    - LINUX_DIST=trusty
+     - LINUX_DIST=trusty
   matrix:
 #    - PACKAGE=Tempus MODE=notest MPI=ON
 #    - PACKAGE=Stokhos MODE=notest MPI=ON
@@ -69,7 +71,14 @@ git:
   depth: 3
 
 before_install:
-  - sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich libboost-dev libnetcdf-dev libmatio-dev libboost-all-dev
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo apt-get install -qq libblas-dev liblapack-dev gfortran mpich libboost-dev libnetcdf-dev libmatio-dev libboost-all-dev; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cask uninstall oclint; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install lapack; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install openblas; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install mpich; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install netcdf; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install libmatio; fi
  
 before_script:
   - git clone https://github.com/duongdoOrg/Trilinos Trilinos
